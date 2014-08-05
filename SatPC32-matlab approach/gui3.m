@@ -22,7 +22,7 @@ function varargout = gui3(varargin)
 
 % Edit the above text to modify the response to help gui3
 
-% Last Modified by GUIDE v2.5 05-Aug-2014 00:36:16
+% Last Modified by GUIDE v2.5 05-Aug-2014 16:28:15
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -129,7 +129,7 @@ function elevationValue_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of elevationValue as text
 %        str2double(get(hObject,'String')) returns contents of elevationValue as a double
-
+set(handles.elevationDial, 'Value', str2double(get(hObject,'String')));
 
 % --- Executes during object creation, after setting all properties.
 function elevationValue_CreateFcn(hObject, eventdata, handles)
@@ -153,6 +153,7 @@ function azimuthValue_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of azimuthValue as text
 %        str2double(get(hObject,'String')) returns contents of azimuthValue as a double
 
+set(handles.azimuthDial, 'Value', str2double(get(hObject,'String')));
 
 % --- Executes during object creation, after setting all properties.
 function azimuthValue_CreateFcn(hObject, eventdata, handles)
@@ -172,6 +173,7 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.azimuthFlag = 0;
 if handles.azimuthFlag == 1
   currentAzimuth = getCurrentAzimuth( handles.azimuthCom );
   % close figure only if the rotor has been returned to 0
@@ -183,3 +185,5 @@ if handles.azimuthFlag == 1
 else
   delete(hObject);
 end
+
+
